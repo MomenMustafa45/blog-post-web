@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Login from "./pages/Login";
@@ -10,22 +10,14 @@ import ViewPost from "./pages/ViewPost";
 import Navbar from "./UI/Navbar";
 
 function App() {
-  const [render, setRender] = useState(false);
-
-  const renderHandler = () => {
-    setRender(!render);
-  };
   return (
     <>
       <Navbar />
       <Routes>
+        <Route path="/blog-post-web" element={<PostsPage />} />
         <Route path="register" element={<Register />} />
         <Route path="signin" element={<Login />} />
 
-        <Route
-          path="/"
-          element={<PostsPage render={render} renderHandler={renderHandler} />}
-        />
         <Route path="viewpost/:id" element={<ViewPost />} />
       </Routes>
     </>
