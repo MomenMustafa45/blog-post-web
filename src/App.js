@@ -14,7 +14,7 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/blog-post-web" element={<PostsPage />} />
+        <Route exact path="/" element={<PostsPage />} />
         <Route path="register" element={<Register />} />
         <Route path="signin" element={<Login />} />
 
