@@ -14,13 +14,11 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Switch>
-          <Route exact path="/" element={<PostsPage />} />
-          <Route path="register" element={<Register />} />
-          <Route path="signin" element={<Login />} />
+        <Route exact path="/" element={<PostsPage />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/signin" element={<Login />} />
 
-          <Route path="viewpost/:id" element={<ViewPost />} />
-        </Switch>
+        <Route path="/viewpost/:id" element={<ViewPost />} />
       </Routes>
     </>
   );
