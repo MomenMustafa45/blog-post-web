@@ -35,7 +35,6 @@ const AddPost = ({ renderHandler }) => {
         setErrorMsg(false);
       }, 3000);
       console.log(formData.image);
-      renderHandler();
       return;
     }
     const storeRef = ref(

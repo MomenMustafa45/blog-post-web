@@ -15,7 +15,7 @@ import LikePost from "../UI/LikePost";
 import { useAuthState } from "react-firebase-hooks/auth";
 // import Comment from "./Comment";
 
-const Post = ({ render }) => {
+const Post = () => {
   const [posts, setPosts] = useState([]);
   // const [imageList, setImageList] = useState([]);
   const [deleteMsg, setDeleteMsg] = useState(false);
