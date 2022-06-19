@@ -85,11 +85,11 @@ const Post = ({ render }) => {
           return (
             <div className="border mt-3 p-3 bg-light" key={item.id}>
               <div className="d-flex justify-content-between">
-                <div className="col-3">
+                <div className="col-3 m-2">
                   <img
                     src={item.image}
                     alt={item.title}
-                    style={{ height: 180, width: 180 }}
+                    style={{ height: 150, width: 150 }}
                   />
                 </div>
                 <div className="col-9 ps-5">

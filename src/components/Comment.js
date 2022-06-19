@@ -1,6 +1,7 @@
 import {
   arrayRemove,
   arrayUnion,
+  deleteDoc,
   doc,
   onSnapshot,
   updateDoc,
@@ -12,6 +13,9 @@ import { auth, dataBase } from "../data/fireBase";
 const Comment = ({ id }) => {
   const [comment, setcomment] = useState("");
   const [comments, setComments] = useState([]);
+  const [updatedComment, setUpdatedComment] = useState("");
+  const [WantToUpdateComment, setWantToUpdateComment] = useState(false);
+  const [updatedMsgErro, setUpdatedMsgError] = useState(false);
   const [isCommentEmpty, setIsCommentEmpty] = useState(false);
   const [user] = useAuthState(auth);
 
@@ -40,8 +44,8 @@ const Comment = ({ id }) => {
     setcomment(e.target.value);
   };
 
-  const addCommentHandler = () => {
-    if (comment.length > 1) {
+  const addCommentHandler = (commentEntered) => {
+    if (commentEntered.length > 1) {
       const commentId = Math.random(Math.floor * 100)
         .toString()
         .substring(10);
@@ -49,7 +53,7 @@ const Comment = ({ id }) => {
       updateDoc(docRef, {
         comments: arrayUnion({
           commentId: commentId,
-          comment: comment,
+          comment: commentEntered,
           createdTime: new Date(),
         }),
       }).then(() => {
@@ -62,6 +66,28 @@ const Comment = ({ id }) => {
         setIsCommentEmpty(false);
       }, 2000);
     }
+  };
+
+  const commentUpdateHandler = (comment, commentEntered) => {
+    if (commentEntered.length > 2) {
+      deleteCommentHandler(comment);
+      setWantToUpdateComment(false);
+      addCommentHandler(commentEntered);
+    } else {
+      console.log("error");
+      setUpdatedMsgError(true);
+      setTimeout(() => {
+        setUpdatedMsgError(false);
+      }, 2000);
+    }
+    setWantToUpdateComment(false);
+  };
+
+  const onUpateChange = (e) => {
+    setUpdatedComment(e.target.value);
+  };
+  const updateToggleHandler = () => {
+    setWantToUpdateComment(true);
   };
 
   //   console.log(comments);
@@ -83,7 +109,7 @@ const Comment = ({ id }) => {
           />
           <button
             className="btn btn-sm btn-primary"
-            onClick={addCommentHandler}
+            onClick={() => addCommentHandler(comment)}
           >
             Add
           </button>
@@ -97,18 +123,56 @@ const Comment = ({ id }) => {
         </div>
       )}
 
+      {updatedMsgErro && (
+        <p className="bg-danger text-center text-light">
+          Input shouldn't be empty
+        </p>
+      )}
+
       {comments &&
         comments.map((comment) => (
           <div key={comment.commentId}>
             <div className="d-flex  border p-2 mt-2 row  justify-content-between text-center">
-              <div className="col-4">{comment.comment}</div>
+              <div className="col-4">
+                <div>{comment.comment}</div>
+                {WantToUpdateComment && (
+                  <input
+                    type="text"
+                    className="form-control mt-2 mb-2"
+                    placeholder="Enter your new comment"
+                    onChange={onUpateChange}
+                    style={{ width: "100%" }}
+                  />
+                )}
+              </div>
+
               <div className="col-4">
                 <button
-                  className="btn btn-sm btn-danger"
+                  className="btn btn btn-danger"
                   onClick={() => deleteCommentHandler(comment)}
+                  style={{ width: 120 }}
                 >
-                  Delete Comment
+                  Delete
                 </button>
+                {WantToUpdateComment ? (
+                  <button
+                    className="btn btn btn-primary mt-2"
+                    onClick={() =>
+                      commentUpdateHandler(comment, updatedComment)
+                    }
+                    style={{ width: 120 }}
+                  >
+                    Confirm
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn btn-primary mt-2"
+                    onClick={updateToggleHandler}
+                    style={{ width: 120 }}
+                  >
+                    Update
+                  </button>
+                )}
               </div>
             </div>
           </div>
