@@ -13,9 +13,9 @@ function App() {
   return (
     <>
       <Navbar />
-      <PostsPage />
+
       <Routes>
-        <Route path="/blog-post-web/" element={<PostsPage />} />
+        <Route path="*" element={<PostsPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/signin" element={<Login />} />
 
