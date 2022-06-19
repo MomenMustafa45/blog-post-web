@@ -1,5 +1,5 @@
-// import { useState } from "react";
-import { Routes, Route, Switch } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Login from "./pages/Login";
 // import AddPost from "./components/AddPost";
@@ -10,12 +10,25 @@ import ViewPost from "./pages/ViewPost";
 import Navbar from "./UI/Navbar";
 
 function App() {
+  // useEffect(() => {
+  //   const getPosts = collection(dataBase, "posts");
+  //   const q = query(getPosts, orderBy("createdtime", "desc"));
+  //   onSnapshot(q, (snapshot) => {
+  //     const post = snapshot.docs.map((item) => ({
+  //       id: item.id,
+  //       ...item.data(),
+  //     }));
+  //     console.log(posts);
+  //     setPosts(post);
+  //   });
+  // }, []);
+
   return (
     <>
       <Navbar />
 
       <Routes>
-        <Route path="*" element={<PostsPage />} />
+        <Route exact path="/" element={<PostsPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/signin" element={<Login />} />
 

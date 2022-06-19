@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../data/fireBase";
 import { signOut } from "firebase/auth";
@@ -15,9 +15,9 @@ const Navbar = () => {
       className="fixed-top border navbar"
       style={{ backgroundColor: "pink" }}
     >
-      <Link to="/blog-post-web" className="navbar-brand m-auto">
+      <NavLink to="/" className="navbar-brand m-auto">
         Home
-      </Link>
+      </NavLink>
       {user && (
         <>
           <span className="p-2">Welcome {user.displayName}</span>
