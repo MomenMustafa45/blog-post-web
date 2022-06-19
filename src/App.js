@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Login from "./pages/Login";
 // import AddPost from "./components/AddPost";
@@ -14,11 +14,13 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route exact path="/" element={<PostsPage />} />
-        <Route path="register" element={<Register />} />
-        <Route path="signin" element={<Login />} />
+        <Switch>
+          <Route exact path="/" element={<PostsPage />} />
+          <Route path="register" element={<Register />} />
+          <Route path="signin" element={<Login />} />
 
-        <Route path="viewpost/:id" element={<ViewPost />} />
+          <Route path="viewpost/:id" element={<ViewPost />} />
+        </Switch>
       </Routes>
     </>
   );
