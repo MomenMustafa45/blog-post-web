@@ -7,7 +7,6 @@ import Login from "./pages/Login";
 import PostsPage from "./pages/PostsPage";
 import Register from "./pages/Register";
 import ViewPost from "./pages/ViewPost";
-import Test from "./Test";
 import Navbar from "./UI/Navbar";
 
 function App() {
@@ -32,11 +31,9 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Test />} />
-        <Route path="/blog-post-web" element={<PostsPage />} />
+        <Route path="/" element={<PostsPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/signin" element={<Login />} />
-
         <Route path="/viewpost/:id" element={<ViewPost />} />
       </Routes>
     </>
