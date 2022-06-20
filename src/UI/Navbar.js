@@ -15,7 +15,7 @@ const Navbar = () => {
       className="fixed-top border navbar"
       style={{ backgroundColor: "pink" }}
     >
-      <NavLink to="/" className="navbar-brand m-auto">
+      <NavLink to="/blog-post-web/" className="navbar-brand m-auto">
         Home
       </NavLink>
       {user && (
