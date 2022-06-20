@@ -10,19 +10,6 @@ import ViewPost from "./pages/ViewPost";
 import Navbar from "./UI/Navbar";
 
 function App() {
-  // useEffect(() => {
-  //   const getPosts = collection(dataBase, "posts");
-  //   const q = query(getPosts, orderBy("createdtime", "desc"));
-  //   onSnapshot(q, (snapshot) => {
-  //     const post = snapshot.docs.map((item) => ({
-  //       id: item.id,
-  //       ...item.data(),
-  //     }));
-  //     console.log(posts);
-  //     setPosts(post);
-  //   });
-  // }, []);
-
   useEffect(() => {
     console.log("hello");
   }, []);

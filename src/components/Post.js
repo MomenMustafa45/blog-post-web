@@ -30,7 +30,7 @@ const Post = () => {
         id: item.id,
         ...item.data(),
       }));
-      console.log(posts);
+
       setPosts(post);
     });
   }, []);
